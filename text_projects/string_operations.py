@@ -4,6 +4,7 @@ Created on 09/18/2014
 @author: vivek
 '''
 
+
 class MyString(object):
     """String manipulations"""
 
@@ -28,7 +29,7 @@ class MyString(object):
         res = {char: 0 for char in vowels}
         for each in list(input_string):
             if each in vowels:
-                res[each]+= 1
+                res[each] += 1
         return res
 
     def count_words(self, input_string):
@@ -70,11 +71,19 @@ class MyString(object):
         for char in input_string:
             if char.isalpha():
                 code = get_encrypt_code(char)
-            elif ord(char) == 32: # space character
+            elif ord(char) == 32:  # space character
                 code = 32
             res += chr(code)
         return res
 
+    def piglatin(self, word):
+        suffix = 'ay'
+        vowels = 'aeiou'
+
+        if word[0] in vowels:
+            return word[:] + 'w' + suffix
+        else:
+            return self.piglatin(word[1:] + word[0])
 
 if __name__ == '__main__':
     myString = MyString()
@@ -84,3 +93,4 @@ if __name__ == '__main__':
     print myString.count_words(input_string)
     print myString.is_palindrome('MADAM')
     print myString.encrypt('QEB NRFZH YOLTK CLU GRJMP LSBO QEB IXWV ALD', 3)
+    print myString.piglatin('is')
