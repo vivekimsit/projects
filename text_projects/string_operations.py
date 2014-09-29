@@ -76,14 +76,14 @@ class MyString(object):
             res += chr(code)
         return res
 
-    def piglatin(self, word):
+    def piglatin(self, word, isRecursive=False):
         suffix = 'ay'
         vowels = 'aeiou'
-
+    
         if word[0] in vowels:
-            return word[:] + 'w' + suffix
+            return word[:] + ('' if isRecursive else 'w') + suffix
         else:
-            return self.piglatin(word[1:] + word[0])
+            return self.piglatin(word[1:] + word[0], True)
 
 if __name__ == '__main__':
     myString = MyString()
